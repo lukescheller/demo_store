@@ -12,11 +12,13 @@
   "author": "Luke Scheller 2022",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "concurrently": "^7.0.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-router-dom": "^6.2.1"
   }
 }
