@@ -94,107 +94,141 @@ const Credentials = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {signInError && (
-        <div className="p-3 mb-2 bg-danger text-white">Invalid Credentials</div>
-      )}
-      <div className={styles.signIn}>
-        <form onSubmit={signIn_Handler}>
-          <label className={styles.signIn_label}>Email:</label>
-          <input
-            type="text"
-            name="signIn_email"
-            onChange={signInEmailChangeHandler}
-            value={signInEmail}
-          />
-          <label className={styles.signIn_label}>Password:</label>
-          <input
-            type="text"
-            name="signIn_password"
-            onChange={signInPasswordChangeHandler}
-            value={signInPassword}
-          />
-          <button className="m-1 btn btn-success" type="submit">
-            Sign In
-          </button>
-        </form>
-      </div>
-      {signUpError && (
-        <div className="p-3 mb-2 bg-danger text-white">Invalid Credentials</div>
-      )}
-      <div className={styles.signUp}>
-        <div className={styles.signUp_form}>
-          <form onSubmit={signUp_Handler}>
-            <div
-              style={{
-                border: "1px solid transparent",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <label className={styles.margin}>Username:</label>
-              <input
-                className={styles.margin}
-                type="text"
-                name="signUp_name"
-                onChange={signUpUsernameChangeHandler}
-                value={signUpUsername}
-              />
-            </div>
-            <div
-              style={{
-                border: "1px solid transparent",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <label className={styles.margin}>Email:</label>
-              <input
-                className={styles.margin}
-                type="text"
-                name="signUp_email"
-                onChange={signUpEmailChangeHandler}
-                value={signUpEmail}
-              />
-            </div>
-            <div
-              style={{
-                border: "1px solid transparent",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <label className={styles.margin}>Password:</label>
-              <input
-                className={styles.margin}
-                type="text"
-                name="signUp_password"
-                onChange={signUpPasswordChangeHandler}
-                value={signUpPassword}
-              />
-            </div>
-            <div
-              style={{
-                border: "1px solid transparent",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <label className={styles.margin}>Confirm Password:</label>
-              <input
-                className={styles.margin}
-                type="text"
-                name="confirm_password"
-                onChange={signUpConfirmPasswordChangeHandler}
-                value={signUpConfirmPassword}
-              />
-            </div>
-            <div>
-              <button className="m-1 btn btn-success" type="submit">
-                Sign Up
-              </button>
-            </div>
+    <div className={styles.outerWrapper}>
+      <div className={styles.wrapper}>
+        <div
+          className="p-3 bg-primary text-white"
+          style={{
+            margin: "5px",
+            marginBottom: "-5px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <h1>Sign In</h1>
+          <div>
+            <img src="https://img.icons8.com/external-nawicon-outline-color-nawicon/64/000000/external-key-hotel-nawicon-outline-color-nawicon.png" />
+          </div>
+        </div>
+        {signInError && (
+          <div className="p-3 bg-danger text-white" style={{ margin: "10px" }}>
+            Invalid Credentials
+          </div>
+        )}
+        <div className={styles.signIn}>
+          <form onSubmit={signIn_Handler}>
+            <label className={styles.signIn_label}>Email:</label>
+            <input
+              type="text"
+              name="signIn_email"
+              onChange={signInEmailChangeHandler}
+              value={signInEmail}
+            />
+            <label className={styles.signIn_label}>Password:</label>
+            <input
+              type="text"
+              name="signIn_password"
+              onChange={signInPasswordChangeHandler}
+              value={signInPassword}
+            />
+            <button className="m-1 btn btn-success" type="submit">
+              Sign In
+            </button>
           </form>
+        </div>
+        <div
+          class="p-3 bg-primary text-white"
+          style={{
+            margin: "5px",
+            marginBottom: "-5px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <h1>Sign Up</h1>
+          <div>
+            <img src="https://img.icons8.com/fluency/48/000000/clipboard.png" />{" "}
+          </div>
+        </div>
+        {signUpError && (
+          <div className="p-3 bg-danger text-white" style={{ margin: "10px" }}>
+            Invalid Credentials
+          </div>
+        )}
+        <div className={styles.signUp}>
+          <div className={styles.signUp_form}>
+            <form onSubmit={signUp_Handler}>
+              <div
+                style={{
+                  border: "1px solid transparent",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label className={styles.margin}>Username:</label>
+                <input
+                  className={styles.margin}
+                  type="text"
+                  name="signUp_name"
+                  onChange={signUpUsernameChangeHandler}
+                  value={signUpUsername}
+                />
+              </div>
+              <div
+                style={{
+                  border: "1px solid transparent",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label className={styles.margin}>Email:</label>
+                <input
+                  className={styles.margin}
+                  type="text"
+                  name="signUp_email"
+                  onChange={signUpEmailChangeHandler}
+                  value={signUpEmail}
+                />
+              </div>
+              <div
+                style={{
+                  border: "1px solid transparent",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label className={styles.margin}>Password:</label>
+                <input
+                  className={styles.margin}
+                  type="text"
+                  name="signUp_password"
+                  onChange={signUpPasswordChangeHandler}
+                  value={signUpPassword}
+                />
+              </div>
+              <div
+                style={{
+                  border: "1px solid transparent",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label className={styles.margin}>Confirm Password:</label>
+                <input
+                  className={styles.margin}
+                  type="text"
+                  name="confirm_password"
+                  onChange={signUpConfirmPasswordChangeHandler}
+                  value={signUpConfirmPassword}
+                />
+              </div>
+              <div>
+                <button className="m-1 btn btn-success" type="submit">
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

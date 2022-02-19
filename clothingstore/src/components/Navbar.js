@@ -10,7 +10,7 @@ const CustomNavBar = () => {
         bg="light"
         expand="md"
         variant="light"
-        style={{ padding: "15px", marginBottom: "25px" }}
+        style={{ padding: "15px", marginBottom: "" }}
       >
         <Navbar.Brand>
           <Link to="/webportfolio2022">
@@ -19,7 +19,6 @@ const CustomNavBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-          {/* photoshop composites */}
           <div
             style={{
               display: "flex",
@@ -28,21 +27,7 @@ const CustomNavBar = () => {
               flexWrap: "wrap",
             }}
           >
-            <Link
-              to="/photoshopcomposites"
-              style={{
-                color: "black",
-                margin: "15px",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/ios-glyphs/60/000000/adobe-photoshop.png"
-              />{" "}
-            </Link>
-            <br />
-            {/* InDesign */}
+            {/* user */}
             <Link
               to="/indesign"
               style={{
@@ -51,72 +36,31 @@ const CustomNavBar = () => {
                 textDecoration: "none",
               }}
             >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/ios-glyphs/60/000000/adobe-indesign.png"
-              />
+              <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-user-interface-kiranshastry-solid-kiranshastry-1.png" />
             </Link>
             <br />
-            {/* clothing */}
+            {/* shoppingcart */}
             <Link
-              to="/clothing"
+              to="/shoppingcart"
               style={{
                 color: "black",
                 margin: "15px",
                 textDecoration: "none",
               }}
             >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/000000/external-shirt-tropical-vitaliy-gorbachev-fill-vitaly-gorbachev.png"
-              />{" "}
+              <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-solid-kiranshastry-1.png" />
             </Link>
             <br />
-
-            {/* Logos */}
+            {/* Logout */}
             <Link
-              to="/logos"
+              to="/logout"
               style={{
                 color: "black",
                 margin: "15px",
                 textDecoration: "none",
               }}
             >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/ios-glyphs/60/000000/trademark.png"
-              />
-            </Link>
-            <br />
-
-            {/* digitalillustrations */}
-            <Link
-              to="/digitalillustrations"
-              style={{
-                color: "black",
-                margin: "15px",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/material-rounded/48/000000/pencil-tip.png"
-              />
-            </Link>
-            <br />
-            {/* code */}
-            <Link
-              to="/code"
-              style={{
-                color: "black",
-                margin: "15px",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                alt={{}}
-                src="https://img.icons8.com/ios-glyphs/50/000000/pokeball.png"
-              />{" "}
+              <img src="https://img.icons8.com/external-sbts2018-solid-sbts2018/58/000000/external-logout-social-media-sbts2018-solid-sbts2018.png" />
             </Link>
             <br />
           </div>
