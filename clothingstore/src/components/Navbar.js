@@ -13,7 +13,7 @@ const CustomNavBar = () => {
         style={{ padding: "15px", marginBottom: "" }}
       >
         <Navbar.Brand>
-          <Link to="/webportfolio2022">
+          <Link to="/">
             <img src={Logo} alt="" width="75px" />
           </Link>
         </Navbar.Brand>
@@ -29,16 +29,29 @@ const CustomNavBar = () => {
           >
             {/* user */}
             <Link
-              to="/indesign"
+              to="/profile"
               style={{
                 color: "black",
                 margin: "15px",
                 textDecoration: "none",
               }}
             >
-              <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-user-interface-kiranshastry-solid-kiranshastry-1.png" />
+              <img src="https://img.icons8.com/color/64/000000/user-location.png" />{" "}
             </Link>
             <br />
+            {/* catalog */}
+            <Link
+              to="/catalog"
+              style={{
+                color: "black",
+                margin: "15px",
+                textDecoration: "none",
+              }}
+            >
+              <img src="https://img.icons8.com/bubbles/75/000000/t-shirt.png" />{" "}
+            </Link>
+            <br />
+
             {/* shoppingcart */}
             <Link
               to="/shoppingcart"
@@ -48,7 +61,8 @@ const CustomNavBar = () => {
                 textDecoration: "none",
               }}
             >
-              <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-solid-kiranshastry-1.png" />
+              <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/58/000000/external-cart-ecommerce-icongeek26-linear-colour-icongeek26.png" />{" "}
+              {0}
             </Link>
             <br />
             {/* Logout */}
@@ -60,7 +74,7 @@ const CustomNavBar = () => {
                 textDecoration: "none",
               }}
             >
-              <img src="https://img.icons8.com/external-sbts2018-solid-sbts2018/58/000000/external-logout-social-media-sbts2018-solid-sbts2018.png" />
+              <img src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png" />{" "}
             </Link>
             <br />
           </div>
