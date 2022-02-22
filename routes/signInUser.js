@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     //token creation - you're creating a token when you sign up and when you log in
     const comparePasswords = await bcrypt.compare(password, user.password);
     if (!comparePasswords) {
-      return res.status(400).json({ msg: "can't sign in" });
+      return res.status(400).json({ msg: "token error" });
     }
 
     const payload = {

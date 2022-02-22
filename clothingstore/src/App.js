@@ -12,6 +12,8 @@ function App() {
   useEffect(() => {
     if (localStorage.token) {
       console.log("token");
+      // let token = JSON.parse(localStorage.getItem("token"));
+      // console.log(token);
     }
   }, []);
   return (

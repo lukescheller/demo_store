@@ -26,14 +26,56 @@ export const axiosRegister = createAsyncThunk(
   }
 );
 
+//SIGN IN
+export const axiosSignIn = createAsyncThunk(
+  "axiosSignIn",
+  async (obj, _, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.post("/signin", obj, config);
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+      return await res.data;
+      // console.log(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
+// GET USER INFO
+export const axiosProfile = createAsyncThunk(
+  "axiosProfile",
+  async (_, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token").replace(/['"]+/g, "");
+      const config = {
+        headers: {
+          "x-auth-token": token,
+        },
+      };
+      const res = await axios.get("/profile", config);
+      return await res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
 const entriesSlice = createSlice({
   name: "entriesSlice",
   initialState: {
     is_loggedIn: false,
     id: null,
-    error: false,
-    error_message: "",
+    signIn_error: false,
+    signIn_error_message: "",
+    signUp_error: false,
+    signUp_error_message: "",
     loading: "",
+    error: "",
     cart: [],
     total: 0,
   },
@@ -45,17 +87,55 @@ const entriesSlice = createSlice({
     });
     builder.addCase(axiosRegister.fulfilled, (state, { payload }) => {
       state.is_loggedIn = true;
-      state.error = false;
-      state.error_message = "";
+      state.signUp_error = false;
+      state.signUp_error_message = "";
+      state.signIn_error = false;
+      state.signIn_error_message = "";
       state.id = payload.token;
       state.loading = "loaded";
     });
     builder.addCase(axiosRegister.rejected, (state, action) => {
       state.is_loggedIn = false;
       state.id = null;
-      state.error = true;
+      state.signUp_error = true;
       state.loading = "error";
-      state.error_message = "Email already exists within DB";
+      state.signUp_error_message =
+        "Email already exists within DB or invalid credentials";
+    });
+    //SIGNIN
+    builder.addCase(axiosSignIn.pending, (state) => {
+      state.loading = "loading";
+    });
+    builder.addCase(axiosSignIn.fulfilled, (state, { payload }) => {
+      state.is_loggedIn = true;
+      state.signIn_error = false;
+      state.signIn_error_message = "";
+      state.signUp_error = false;
+      state.signUp_error_message = "";
+      state.id = payload.token;
+      state.loading = "loaded";
+    });
+    builder.addCase(axiosSignIn.rejected, (state, action) => {
+      state.is_loggedIn = false;
+      state.id = null;
+      state.signIn_error = true;
+      state.loading = "error";
+      state.signIn_error_message = "Email doesn't exist or false password";
+    });
+    // PROFILE
+    builder.addCase(axiosProfile.pending, (state) => {
+      state.loading = "loading";
+    });
+    builder.addCase(axiosProfile.fulfilled, (state, { payload }) => {
+      state.is_loggedIn = true;
+      state.signIn_error = false;
+      state.signIn_error_message = "";
+      state.id = payload;
+      state.loading = "loaded";
+    });
+    builder.addCase(axiosProfile.rejected, (state, action) => {
+      state.loading = "error";
+      state.error = action.error.message;
     });
   },
 });

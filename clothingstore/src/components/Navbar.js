@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.jpg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCredentials } from "../store/signUpSlice";
 
 const CustomNavBar = () => {
   const { credentials } = useSelector(selectCredentials);
-  useEffect(() => {
-    console.log(credentials);
-    console.log("nav");
-  }, [credentials]);
+  useEffect(() => {}, [credentials]);
   return (
     <div>
       <Navbar
@@ -44,7 +41,10 @@ const CustomNavBar = () => {
                   textDecoration: "none",
                 }}
               >
-                <img src="https://img.icons8.com/color/64/000000/user-location.png" />{" "}
+                <img
+                  alt=""
+                  src="https://img.icons8.com/color/64/000000/user-location.png"
+                />{" "}
               </Link>
             )}
             <br />
@@ -58,7 +58,10 @@ const CustomNavBar = () => {
                   textDecoration: "none",
                 }}
               >
-                <img src="https://img.icons8.com/bubbles/75/000000/t-shirt.png" />{" "}
+                <img
+                  alt=""
+                  src="https://img.icons8.com/bubbles/75/000000/t-shirt.png"
+                />{" "}
               </Link>
             )}
             <br />
@@ -73,7 +76,10 @@ const CustomNavBar = () => {
                   textDecoration: "none",
                 }}
               >
-                <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/58/000000/external-cart-ecommerce-icongeek26-linear-colour-icongeek26.png" />{" "}
+                <img
+                  alt=""
+                  src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/58/000000/external-cart-ecommerce-icongeek26-linear-colour-icongeek26.png"
+                />{" "}
                 {0}
               </Link>
             )}
@@ -88,7 +94,10 @@ const CustomNavBar = () => {
                   textDecoration: "none",
                 }}
               >
-                <img src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png" />{" "}
+                <img
+                  alt=""
+                  src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png"
+                />{" "}
               </Link>
             )}
             <br />
