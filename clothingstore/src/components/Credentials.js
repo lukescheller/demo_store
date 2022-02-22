@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import styles from "./Credentials.module.css";
 import signIn_Check from "../formCheck_Functions/signIn_Check";
 import signUp_Check from "../formCheck_Functions/signUp_Check";
+import { useSelector } from "react-redux";
+import { selectEntries } from "../store/signUpSlice";
 import me from "../images/me2022.jpg";
 
 const Credentials = () => {
+  const { entries } = useSelector(selectEntries);
+  console.log(entries);
   //Sign-In state
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -49,7 +53,7 @@ const Credentials = () => {
 
   //Submit Handlers
 
-  //SignIp Handler
+  //SignIn Handler
   const signIn_Handler = (event) => {
     event.preventDefault();
     console.log(signIn_Check(signInEmail, signInPassword));
@@ -61,7 +65,7 @@ const Credentials = () => {
       setSignInError(true);
       setTimeout(() => {
         setSignInError(false);
-      }, 2000);
+      }, 1000);
     }
   };
 
@@ -85,12 +89,14 @@ const Credentials = () => {
       )
     ) {
       //true
+      //redux function
+      // DON'T FORGET () when calling a function....
     } else {
       // false
       setSignUpError(true);
       setTimeout(() => {
         setSignUpError(false);
-      }, 2000);
+      }, 1000);
     }
   };
 
@@ -167,12 +173,12 @@ const Credentials = () => {
             challenge and process of writing and learning to write efficient
             code! My long term professional goal is to become a senior full
             stack web developer/software engineer at a skateboarding company
-            such as Thrasher, Zumiez, or CCS!
-            <br /> Thanks for taking the time to read my bio!
+            such as Thrasher, Zumiez, or CCS! Thanks for taking the time to read
+            my bio!
             <br />
             <br />
-            lukescheller1991@outlook.com | 651-207-7638
           </div>
+          <div> lukescheller1991@outlook.com | 651-207-7638</div>
         </div>
         <div className={styles.wrapper}>
           {/* Sign In */}

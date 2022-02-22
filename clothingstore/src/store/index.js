@@ -1,23 +1,20 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = { userID: null, shoppingCart: [], isLoggedIn: false };
+//how to merge all slice reducers together
+import entriesReducer from "./signUpSlice";
 
-//multiple slices can/will exist
-const shoppingSlice = createSlice({
-  name: "shopping",
-  initialState,
-  reducers: {},
-});
-
+//createStore needs a reducer - the reducer holds all of the state
+//1 reducer - there can't be multiple
+//the reducers will be merged into 1
 const store = configureStore({
-  // reducer is a required word - configureStore wants 1 reducer
+  // singular reducer..
+  // reducer: counterSlice.reducer,
+  // multiple reducers..
+  // multiple reducers are merged into one big one
   reducer: {
-    // counter: counterSlice.reducer,
-    shop: shoppingSlice.reducer,
+    entries: entriesReducer,
   },
 });
 
-//you're exporting the store/state & the actions to manipulate the store individually
-//in another file the way you access these actions - import {counterActions} from '../store/example
-export const shoppingActions = shoppingSlice.actions;
+// you export the store by itself
 export default store;

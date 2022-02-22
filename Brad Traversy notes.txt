@@ -1,0 +1,8 @@
+- Whitelist your IP address on MongoDB when you deploy it - maybe do that now....
+- check in with Mason once you begin applying
+
+- config -> global variables
+- for your next project - consider using validation on the backend like in Brad's project - returning an error response makes it more dynamic - what you have now is custom validation on the frontend... oh well, next time.
+
+PROXY - it's within React's package.json - make sure it's NOT within the "scripts" object.......
+- otherwise it'll always call out to port 3000 instead of 5000

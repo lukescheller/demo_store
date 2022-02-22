@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = process.env.port || 5000;
+const PORT = process.env.port || 5000;
 const DB_CONNECTION = require("./config/connect");
 
 DB_CONNECTION();
@@ -9,4 +9,9 @@ DB_CONNECTION();
 app.use(express.json({ extended: false }));
 app.use(cors({ origin: "*" }));
 
-app.listen(port, () => console.log(`server running on port: ${port}`));
+// app.use("/test", require("./routes/test"));
+app.use("/register", require("./routes/registerUser"));
+app.use("/signin", require("./routes/signInUser"));
+// app.use("/auth", require("./routes/auth"));
+
+app.listen(PORT, () => console.log(`server running on port: ${PORT}`));
