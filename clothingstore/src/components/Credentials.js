@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Credentials.module.css";
 import signIn_Check from "../formCheck_Functions/signIn_Check";
 import signUp_Check from "../formCheck_Functions/signUp_Check";
-import { useSelector } from "react-redux";
-import { selectEntries } from "../store/signUpSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCredentials } from "../store/signUpSlice";
+import { axiosRegister } from "../store/signUpSlice";
 import me from "../images/me2022.jpg";
 
 const Credentials = () => {
-  const { entries } = useSelector(selectEntries);
-  console.log(entries);
+  const { credentials } = useSelector(selectCredentials);
+  const dispatch = useDispatch();
+  // console.log(credentials);
+
+  useEffect(() => {
+    if (credentials.error) {
+      setSignUpError(true);
+    } else {
+      setSignUpError(false);
+    }
+  }, [credentials]);
+  // [credentials is how you track when your redux state changes/updates....]
+
   //Sign-In state
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -91,6 +103,16 @@ const Credentials = () => {
       //true
       //redux function
       // DON'T FORGET () when calling a function....
+      dispatch(
+        axiosRegister({
+          username: signUpUsername,
+          email: signUpEmail,
+          password: signUpPassword,
+        })
+      );
+      // if (credentials.error) {
+      //   setSignUpError(true);
+      // }
     } else {
       // false
       setSignUpError(true);
@@ -105,55 +127,55 @@ const Credentials = () => {
       <div className={styles.outerWrapper}>
         <div className={styles.leftWrapper}>
           <div className={styles.leftImg}>
-            <img src={me} />
+            <img alt="me" src={me} />
           </div>
           <div className={styles.leftIcons}>
             <img
-              alt={{}}
+              alt="windows"
               src="https://img.icons8.com/color/48/000000/windows-logo.png"
             />
             <img
-              alt={{}}
+              alt="visual studio code"
               src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
             />
             <img
-              alt={{}}
+              alt="html5"
               src="https://img.icons8.com/color/48/000000/html-5--v1.png"
             />
             <img
-              alt={{}}
+              alt="css"
               src="https://img.icons8.com/color/48/000000/css3.png"
             />
             <img
-              alt={{}}
+              alt="bootstrap"
               src="https://img.icons8.com/color/48/000000/bootstrap.png"
             />
             <img
-              alt={{}}
+              alt="javascript"
               src="https://img.icons8.com/color/48/000000/javascript--v1.png"
             />
             <img
-              alt={{}}
+              alt="react"
               src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png"
             />
             <img
-              alt={{}}
+              alt="redux"
               src="https://img.icons8.com/color/48/000000/redux.png"
             />
             <img
-              alt={{}}
+              alt="node"
               src="https://img.icons8.com/fluency/48/000000/node-js.png"
             />
             <img
-              alt={{}}
+              alt="photoshop"
               src="https://img.icons8.com/color/48/000000/adobe-photoshop--v1.png"
             />
             <img
-              alt={{}}
+              alt="illustrator"
               src="https://img.icons8.com/color/48/000000/adobe-illustrator--v1.png"
             />
             <img
-              alt={{}}
+              alt="indesign"
               src="https://img.icons8.com/color/48/000000/adobe-indesign--v1.png"
             />
           </div>
@@ -193,7 +215,10 @@ const Credentials = () => {
           >
             <h1>Sign In</h1>
             <div>
-              <img src="https://img.icons8.com/external-nawicon-outline-color-nawicon/48/000000/external-key-hotel-nawicon-outline-color-nawicon.png" />{" "}
+              <img
+                alt="key"
+                src="https://img.icons8.com/external-nawicon-outline-color-nawicon/48/000000/external-key-hotel-nawicon-outline-color-nawicon.png"
+              />{" "}
             </div>
           </div>
           {signInError && (
@@ -201,7 +226,7 @@ const Credentials = () => {
               className="p-3 bg-danger text-white"
               style={{ margin: "5px", marginBottom: "-5px" }}
             >
-              Invalid Credentials
+              {credentials.error_message}
             </div>
           )}
           <div className={styles.signUp}>
@@ -259,7 +284,10 @@ const Credentials = () => {
           >
             <h1>Sign Up</h1>
             <div>
-              <img src="https://img.icons8.com/fluency/48/000000/clipboard.png" />{" "}
+              <img
+                alt="notepad"
+                src="https://img.icons8.com/fluency/48/000000/clipboard.png"
+              />{" "}
             </div>
           </div>
           {signUpError && (
@@ -267,7 +295,7 @@ const Credentials = () => {
               className="p-3 bg-danger text-white"
               style={{ margin: "5px", marginBottom: "-5px" }}
             >
-              Invalid Credentials
+              {credentials.error_message}
             </div>
           )}
 
@@ -339,9 +367,16 @@ const Credentials = () => {
                   />
                 </div>
                 <div style={{ marginTop: "15px" }}>
-                  <button className="m-1 btn btn-success" type="submit">
-                    Sign Up
-                  </button>
+                  {credentials.loading === "loading" ? (
+                    <img
+                      alt="spinner"
+                      src="https://img.icons8.com/material-outlined/24/000000/spinner--v3.png"
+                    />
+                  ) : (
+                    <button className="m-1 btn btn-success" type="submit">
+                      Sign Up
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 //how to merge all slice reducers together
+// entriesReducer can be named anything...
 import entriesReducer from "./signUpSlice";
 
 //createStore needs a reducer - the reducer holds all of the state
@@ -12,7 +13,7 @@ const store = configureStore({
   // multiple reducers..
   // multiple reducers are merged into one big one
   reducer: {
-    entries: entriesReducer,
+    credentials: entriesReducer,
   },
 });
 

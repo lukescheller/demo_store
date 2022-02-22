@@ -5,14 +5,21 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const axiosEntries = createAsyncThunk(
-  "entries/axiosEntries",
-  async (_, thunkAPI) => {
+//REGISTER
+export const axiosRegister = createAsyncThunk(
+  "axiosRegister",
+  async (obj, _, thunkAPI) => {
     try {
-      const response = await axios.get("/entries");
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.post("/register", obj, config);
       // console.log(response);
       // response.json() was the problem
-      return await response.data;
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+      return await res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
@@ -22,31 +29,43 @@ export const axiosEntries = createAsyncThunk(
 const entriesSlice = createSlice({
   name: "entriesSlice",
   initialState: {
-    entries: [],
-    loading: "idle",
-    error: "",
+    is_loggedIn: false,
+    id: null,
+    error: false,
+    error_message: "",
+    loading: "",
+    cart: [],
+    total: 0,
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(axiosEntries.pending, (state) => {
-      state.entries = [];
+    //REGISTER
+    builder.addCase(axiosRegister.pending, (state) => {
       state.loading = "loading";
     });
-    builder.addCase(axiosEntries.fulfilled, (state, { payload }) => {
-      state.entries = payload;
+    builder.addCase(axiosRegister.fulfilled, (state, { payload }) => {
+      state.is_loggedIn = true;
+      state.error = false;
+      state.error_message = "";
+      state.id = payload.token;
       state.loading = "loaded";
     });
-    builder.addCase(axiosEntries.rejected, (state, action) => {
+    builder.addCase(axiosRegister.rejected, (state, action) => {
+      state.is_loggedIn = false;
+      state.id = null;
+      state.error = true;
       state.loading = "error";
-      state.error = action.error.message;
+      state.error_message = "Email already exists within DB";
     });
   },
 });
 
-export const selectEntries = createSelector(
+export const selectCredentials = createSelector(
   (state) => ({
-    entries: state.entries,
-    loading: state.entries.loading,
+    // credentials is in index.js
+    // don't quite understand why this is named what it's named
+    credentials: state.credentials,
+    loading: state.credentials.loading,
   }),
   (state) => state
 );
