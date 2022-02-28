@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectCredentials } from "../store/signUpSlice";
-import { axiosProfile } from "../store/signUpSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
-  const { credentials } = useSelector(selectCredentials);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(axiosProfile());
-  }, []);
-
+  const username = useSelector((state) => state.redux_state.user.username);
   return (
     <div>
-      <h1>Hello {credentials.id.username}</h1>
+      <h1>Hello {username}</h1>
     </div>
   );
 };

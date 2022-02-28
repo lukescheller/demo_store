@@ -16,7 +16,9 @@ router.post("/", async (req, res) => {
     let user = await User.findOne({ email });
     if (user) {
       // works
-      return res.status(400).json({ error: "user already exists" });
+      return res
+        .status(400)
+        .json({ message: "email already exists within db" });
     }
 
     //this is destructured

@@ -54,7 +54,14 @@ const signUp_Check = (username, email, password, confirmPassword) => {
       password_checked,
       confirm_password_checked
     );
-    return valid_signUp;
+    return [
+      valid_signUp,
+      {
+        username: userName_checked,
+        email: email_checked,
+        password: password_checked,
+      },
+    ];
   } else {
     console.log(
       userName_checked,
@@ -62,7 +69,7 @@ const signUp_Check = (username, email, password, confirmPassword) => {
       password_checked,
       confirm_password_checked
     );
-    return valid_signUp;
+    return [valid_signUp, valid_signUp];
   }
 };
 

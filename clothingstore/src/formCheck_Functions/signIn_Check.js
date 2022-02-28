@@ -24,6 +24,8 @@ const signIn_Check = (email, password) => {
   // - check for valid email
 
   console.log(str, pass_check);
+  let email_checked = str;
+  let password_checked = pass_check;
 
   if (
     email_remove_space.includes("@") &&
@@ -32,9 +34,9 @@ const signIn_Check = (email, password) => {
     pass_check.length > 0
   ) {
     valid_SignIn = true;
-    return valid_SignIn;
+    return [valid_SignIn, { email: email_checked, password: password_checked }];
   } else {
-    return valid_SignIn;
+    return [valid_SignIn, false];
   }
 };
 

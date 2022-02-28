@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.jpg";
 import { useSelector } from "react-redux";
-import { selectCredentials } from "../store/signUpSlice";
 
 const CustomNavBar = () => {
-  const { credentials } = useSelector(selectCredentials);
-  useEffect(() => {}, [credentials]);
+  const isAuthorized = useSelector((state) => state.redux_state.isAuthorized);
+  const items_length = useSelector((state) => state.customer_cart.cart.length);
+
   return (
     <div>
       <Navbar
@@ -32,7 +32,7 @@ const CustomNavBar = () => {
             }}
           >
             {/* user */}
-            {credentials.is_loggedIn && (
+            {isAuthorized ? (
               <Link
                 to="/profile"
                 style={{
@@ -46,10 +46,12 @@ const CustomNavBar = () => {
                   src="https://img.icons8.com/color/64/000000/user-location.png"
                 />{" "}
               </Link>
+            ) : (
+              ""
             )}
             <br />
             {/* catalog */}
-            {credentials.is_loggedIn && (
+            {isAuthorized ? (
               <Link
                 to="/catalog"
                 style={{
@@ -63,11 +65,13 @@ const CustomNavBar = () => {
                   src="https://img.icons8.com/bubbles/75/000000/t-shirt.png"
                 />{" "}
               </Link>
+            ) : (
+              ""
             )}
             <br />
 
             {/* shoppingcart */}
-            {credentials.is_loggedIn && (
+            {isAuthorized ? (
               <Link
                 to="/shoppingcart"
                 style={{
@@ -80,12 +84,15 @@ const CustomNavBar = () => {
                   alt=""
                   src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/58/000000/external-cart-ecommerce-icongeek26-linear-colour-icongeek26.png"
                 />{" "}
-                {0}
+                {items_length}
               </Link>
+            ) : (
+              ""
             )}
+
             <br />
             {/* Logout */}
-            {credentials.is_loggedIn && (
+            {isAuthorized ? (
               <Link
                 to="/logout"
                 style={{
@@ -99,7 +106,10 @@ const CustomNavBar = () => {
                   src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png"
                 />{" "}
               </Link>
+            ) : (
+              ""
             )}
+
             <br />
           </div>
         </Navbar.Collapse>

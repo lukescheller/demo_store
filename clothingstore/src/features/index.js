@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import reduxReducer from "./reduxSlice";
+import storeReducer from "./storeSlice";
+import cartReducer from "./cartSlice";
 
 //how to merge all slice reducers together
 // entriesReducer can be named anything...
-import entriesReducer from "./signUpSlice";
 
 //createStore needs a reducer - the reducer holds all of the state
 //1 reducer - there can't be multiple
@@ -13,7 +15,9 @@ const store = configureStore({
   // multiple reducers..
   // multiple reducers are merged into one big one
   reducer: {
-    credentials: entriesReducer,
+    redux_state: reduxReducer,
+    store: storeReducer,
+    customer_cart: cartReducer,
   },
 });
 
