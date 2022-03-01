@@ -11,8 +11,6 @@ const bcrypt = require("bcryptjs");
 //within headers you'll need - x-auth-token and content-type: application json
 //this route will login a user if it exists within the db
 router.post("/", async (req, res) => {
-  console.log(req.body);
-
   const { email, password } = req.body;
 
   try {

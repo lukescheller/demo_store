@@ -1,0 +1,9 @@
+.wrapper {
+  border: 1px solid black;
+  margin: 2.5px;
+  padding: 5px;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}

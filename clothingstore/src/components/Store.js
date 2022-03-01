@@ -1,26 +1,29 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../features/cartSlice";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Ind_item from "./Ind_item";
+import StoreFilter from "./StoreFilter";
+import styles from "./Store.module.css";
 
 const Store = () => {
   const items = useSelector((state) => state.store.items);
-  const dispatch = useDispatch();
+  const [sort, setSorter] = useState(items);
+  // console.log(sort);
+
   return (
-    <div>
-      {items.map((i, index) => {
-        return (
-          <div>
-            <h1 key={index}>{i.brand}</h1>
-            <button
-              onClick={() => dispatch(addToCart(1))}
-              type="button"
-              className="btn btn-success"
-            >
-              Add to Cart
-            </button>
-          </div>
-        );
-      })}
+    <div className={styles.wrapper}>
+      <StoreFilter setSorter={setSorter} />
+      <div className={styles.items}>
+        {sort.map((i, index) => {
+          return (
+            <Ind_item
+              brand={i.brand}
+              category={i.category}
+              price={i.price}
+              key={index}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

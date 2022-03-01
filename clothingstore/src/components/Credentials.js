@@ -257,7 +257,7 @@ const Credentials = () => {
           </div>
           {/* Sign Up */}
           <div
-            class="p-3 bg-primary text-white"
+            className="p-3 bg-primary text-white"
             style={{
               margin: "5px",
               marginBottom: "-5px",
