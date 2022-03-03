@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
 import styles from "./Ind_item.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 const Ind_item = (props) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Ind_item = (props) => {
           onClick={() =>
             dispatch(
               addToCart({
+                id: uuidv4(),
                 brand: props.brand,
                 category: props.category,
                 price: props.price,

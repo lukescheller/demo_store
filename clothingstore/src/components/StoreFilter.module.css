@@ -1,9 +1,16 @@
 .wrapper {
-  border: 1px solid black;
+  border: 1px solid transparent;
   margin: 2.5px;
   padding: 5px;
 }
 
-.slidecontainer {
-  width: 100%; /* Width of the outside container */
+.selected {
+  border: 1px solid transparent;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected_header {
+  border-bottom: 1px solid black;
 }

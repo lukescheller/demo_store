@@ -6,7 +6,7 @@ const topicSort = (string) => {
     let findInx = topicArray.indexOf(string);
     topicArray.splice(findInx, 1);
   }
-  console.log(topicArray);
+  // console.log(topicArray);
   return topicArray;
 };
 

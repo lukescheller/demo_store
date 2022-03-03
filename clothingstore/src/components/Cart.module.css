@@ -1,0 +1,42 @@
+.wrapper {
+  border: 1px solid transparent;
+  margin: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.bill {
+  /* grid-column: 2/-1; */
+  border: 1px solid transparent;
+  margin: 5px;
+}
+
+.bill_title {
+  border: 1px solid transparent;
+  margin: 10px;
+  text-align: right;
+}
+
+.items {
+  /* grid-column: 1/2; */
+  border: 1px solid transparent;
+  margin: 5px;
+  overflow-y: scroll;
+  height: 650px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.itemized {
+  border: 1px solid transparent;
+  margin: 5px;
+}
+
+.itemized_items {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+}

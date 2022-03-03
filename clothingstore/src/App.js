@@ -10,6 +10,7 @@ import Credentials from "./components/Credentials";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Store from "./components/Store";
+import Shoppingcart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/" element={<Credentials />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/catalog" element={<Store />} />
+          <Route exact path="/shoppingcart" element={<Shoppingcart />} />
         </Routes>
         <Footer />
       </div>
