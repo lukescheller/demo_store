@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./StoreFilter.module.css";
 import categorySort from "../helperFunctions/categorySort";
@@ -39,7 +39,14 @@ const StoreFilter = (props) => {
         <div className={styles.selected}>
           {keys.map((k) => {
             // DON'T FORGET THE return STATEMENT
-            return <p style={{ margin: "5px" }}>{k}</p>;
+            return (
+              <p
+                className="p-3 mb-2 bg-primary text-white"
+                style={{ margin: "5px", borderRadius: "5px" }}
+              >
+                {k}
+              </p>
+            );
           })}
         </div>
         <div style={{ marginTop: "10px" }}>
@@ -51,6 +58,15 @@ const StoreFilter = (props) => {
             }}
           >
             <h4>1. Categories (required)</h4>
+          </div>
+          <div style={{ margin: "5px" }}>
+            <button
+              style={{ width: "100%" }}
+              className="btn btn-success"
+              onClick={() => props.setSorter(items)}
+            >
+              All Items
+            </button>
           </div>
           <div
             style={{ display: "grid", overflowY: "scroll", height: "350px" }}
@@ -66,6 +82,7 @@ const StoreFilter = (props) => {
                     // why is this here - I don't get it
                     // nothing works when this isn't here
                     // this makes the selected catagories work as well as clicking once on the filter button
+                    // if useState causes a rerender then this is the trick.
                     setTest(!test);
                   }}
                 >
@@ -84,44 +101,60 @@ const StoreFilter = (props) => {
         >
           <h4>2. Price Range (required)</h4>
         </div>
-        <div style={{ width: "100%" }}>
-          Min:
-          <input
-            type="number"
-            id="points"
-            name="points"
-            step="5"
-            placeholder="min"
-            max={sorted_prices[1]}
-            min={sorted_prices[0]}
-            style={{ width: "100%" }}
-            onChange={(e) => {
-              setMin(e.target.value);
+        <div style={{ width: "100%", margin: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "5px",
             }}
-          />
-          Max:
-          <input
-            type="number"
-            id="points"
-            name="points"
-            step="5"
-            placeholder="max"
-            max={sorted_prices[1]}
-            min={sorted_prices[0]}
-            style={{ width: "100%", marginTop: "5px" }}
-            onChange={(e) => {
-              setMax(e.target.value);
+          >
+            <label>Min:</label>
+            <div style={{ width: "90%" }}>
+              <input
+                type="number"
+                id="points"
+                name="points"
+                step="5"
+                max={sorted_prices[1]}
+                min={sorted_prices[0]}
+                style={{ width: "85%" }}
+                onChange={(e) => {
+                  setMin(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "5px",
             }}
-          />
+          >
+            <label>Max:</label>
+            <div style={{ width: "90%" }}>
+              <input
+                type="number"
+                id="points"
+                name="points"
+                step="5"
+                max={sorted_prices[1]}
+                min={sorted_prices[0]}
+                style={{ width: "85%" }}
+                onChange={(e) => {
+                  setMax(e.target.value);
+                }}
+              />
+            </div>
+          </div>
         </div>
-        <div>
+        <div style={{ borderTop: "1px solid black", marginTop: "15px" }}>
           <button
             className="btn btn-success"
-            style={{ margin: "25px" }}
+            style={{ margin: "10px" }}
             onClick={() => {
               props.setSorter(filtered);
-              // this solved the having to double click issue.... guess it didn't
-              // <link to="catalog" />;
             }}
           >
             Filter Results

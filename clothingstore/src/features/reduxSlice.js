@@ -1,6 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//RELOAD CART
+export const axiosReload = createAsyncThunk("axiosReload", async () => {
+  let auth_token = localStorage.getItem("token").replace(/['"]+/g, "");
+  const reload_config = {
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": auth_token,
+    },
+  };
+  const user = await axios.get("/profile", reload_config);
+  console.log(user);
+  // console.log(response);
+  // response.json() was the problem
+  return await user.data;
+});
+
 //SIGN IN
 export const axiosSignIn = createAsyncThunk("axiosSignIn", async (obj) => {
   const config = {
@@ -61,7 +77,7 @@ const reduxSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    //SIGN UP
+    //SIGN UP **
     builder.addCase(axiosSignUp.pending, (state) => {
       state.signUp_loading = "loading";
       state.signUp_error = "";
@@ -84,7 +100,7 @@ const reduxSlice = createSlice({
       state.signIn_loading = "idle";
       state.signIn_error = "";
     });
-    //SIGN IN
+    //SIGN IN **
     builder.addCase(axiosSignIn.pending, (state) => {
       state.signIn_loading = "loading";
       state.signIn_error = "";
@@ -107,6 +123,12 @@ const reduxSlice = createSlice({
       state.signUp_loading = "idle";
       state.signUp_error = "";
     });
+    //RELOAD **
+    builder.addCase(axiosReload.pending, (state) => {});
+    builder.addCase(axiosReload.fulfilled, (state, { payload }) => {
+      state.user = payload;
+    });
+    builder.addCase(axiosReload.rejected, (state, action) => {});
   },
 });
 

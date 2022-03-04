@@ -7,13 +7,14 @@ module.exports = function (req, res, next) {
   //if no token
   if (!token) {
     return res.status(401).json({
-      msg: "No Token",
+      msg: "Token not detected",
     });
   }
   try {
     const tokenCheck = jwt.verify(token, config.get("jwtSecret"));
     // this is where the token's being sent - this is how you access it from auth.js
     req.user = tokenCheck.user;
+    console.log(req.user);
     next();
   } catch (error) {
     res.status(401).json({ msg: "Invalid token" });

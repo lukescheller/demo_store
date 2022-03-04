@@ -1,10 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const axiosCheckout = createAsyncThunk(
+  "axiosCheckout",
+  async (JSON_ARRAY) => {
+    let token = localStorage.getItem("token").replace(/['"]+/g, "");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+    };
+    const response = await axios.put("/checkout", JSON_ARRAY, config);
+    console.log("works");
+    return await response.data;
+  }
+);
 
 const cartSlice = createSlice({
   name: "cartSlice",
   initialState: {
     cart: [],
     total: 0,
+    loading: "idle",
+    error: "",
   },
   reducers: {
     addToCart: (state, action) => {
@@ -24,6 +43,22 @@ const cartSlice = createSlice({
         }
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(axiosCheckout.pending, (state) => {
+      state.loading = "loading";
+      state.error = "";
+    });
+    builder.addCase(axiosCheckout.fulfilled, (state, { payload }) => {
+      state.cart = [];
+      state.total = 0;
+      state.loading = "loaded";
+      state.error = "";
+    });
+    builder.addCase(axiosCheckout.rejected, (state, action) => {
+      state.loading = "error";
+      state.error = action.error;
+    });
   },
 });
 

@@ -62,7 +62,7 @@ const CustomNavBar = () => {
               >
                 <img
                   alt=""
-                  src="https://img.icons8.com/bubbles/75/000000/t-shirt.png"
+                  src="https://img.icons8.com/color/64/000000/books.png"
                 />{" "}
               </Link>
             ) : (
