@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const CustomNavBar = () => {
   const isAuthorized = useSelector((state) => state.redux_state.isAuthorized);
   const items_length = useSelector((state) => state.customer_cart.cart.length);
-
   return (
     <div>
       <Navbar
@@ -62,7 +61,7 @@ const CustomNavBar = () => {
               >
                 <img
                   alt=""
-                  src="https://img.icons8.com/color/64/000000/books.png"
+                  src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/000000/external-books-education-smashingstocks-flat-smashing-stocks.png"
                 />{" "}
               </Link>
             ) : (
@@ -82,8 +81,8 @@ const CustomNavBar = () => {
               >
                 <img
                   alt=""
-                  src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/58/000000/external-cart-ecommerce-icongeek26-linear-colour-icongeek26.png"
-                />{" "}
+                  src="https://img.icons8.com/external-itim2101-flat-itim2101/64/000000/external-cart-online-shopping-itim2101-flat-itim2101-3.png"
+                />
                 {items_length}
               </Link>
             ) : (
@@ -93,20 +92,23 @@ const CustomNavBar = () => {
             <br />
             {/* Logout */}
             {isAuthorized ? (
-              <Link
-                to="/logout"
-                style={{
-                  color: "black",
-                  margin: "15px",
-                  textDecoration: "none",
-                }}
-              >
-                <img
-                  alt=""
-                  src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png"
-                />{" "}
-              </Link>
+              <button className="btn btn-danger" onClick={{}}>
+                Logout
+              </button>
             ) : (
+              // <Link
+              //   to="/logout"
+              //   style={{
+              //     color: "black",
+              //     margin: "15px",
+              //     textDecoration: "none",
+              //   }}
+              // >
+              //   <img
+              //     alt=""
+              //     src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png"
+              //   />{" "}
+              // </Link>
               ""
             )}
 

@@ -11,7 +11,6 @@ export const axiosReload = createAsyncThunk("axiosReload", async () => {
     },
   };
   const user = await axios.get("/profile", reload_config);
-  console.log(user);
   // console.log(response);
   // response.json() was the problem
   return await user.data;

@@ -20,6 +20,8 @@ const Store = () => {
               category={i.category}
               price={i.price}
               key={index}
+              img={i.img}
+              desc={i.description}
             />
           );
         })}

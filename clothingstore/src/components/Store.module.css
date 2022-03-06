@@ -1,6 +1,7 @@
 .wrapper {
   display: grid;
   grid-template-columns: 25% 1fr;
+  border: 1px solid transparent;
 }
 
 .filter {
@@ -17,4 +18,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   width: 99%;
   justify-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .items {
+    grid-template-columns: 1fr;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
