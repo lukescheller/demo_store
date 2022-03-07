@@ -3,8 +3,6 @@ import axios from "axios";
 
 //SIGN UP
 export const load_Profile = createAsyncThunk("load_Profile", async () => {
-  //axios doesn't need a try catch because it does that automatically
-  //axios will also jsonify you're result
   let profile_token = localStorage.getItem("token").replace(/['"]+/g, "");
   const profile_config = {
     headers: {
@@ -13,8 +11,6 @@ export const load_Profile = createAsyncThunk("load_Profile", async () => {
     },
   };
   const user = await axios.get("/profile", profile_config);
-  // console.log(response);
-  // response.json() was the problem
   return await user.data;
 });
 
@@ -27,7 +23,6 @@ const loadSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    //SIGN UP **
     builder.addCase(load_Profile.pending, (state) => {
       state.loading = "loading";
       state.error = "";

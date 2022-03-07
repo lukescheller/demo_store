@@ -111,23 +111,17 @@ const CustomNavBar = () => {
             <br />
             {/* Logout */}
             {isAuthorized ? (
-              <button className="btn btn-danger" onClick={{}}>
-                Logout
-              </button>
+              <Link
+                to="/settings"
+                style={{
+                  color: "black",
+                  margin: "15px",
+                  textDecoration: "none",
+                }}
+              >
+                <img src="https://img.icons8.com/dusk/60/000000/gear.png" />
+              </Link>
             ) : (
-              // <Link
-              //   to="/logout"
-              //   style={{
-              //     color: "black",
-              //     margin: "15px",
-              //     textDecoration: "none",
-              //   }}
-              // >
-              //   <img
-              //     alt=""
-              //     src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/48/000000/external-logout-social-media-sbts2018-lineal-color-sbts2018.png"
-              //   />{" "}
-              // </Link>
               ""
             )}
 
