@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Credentials.module.css";
-import signIn_Check from "../formCheck_Functions/signIn_Check";
-import signUp_Check from "../formCheck_Functions/signUp_Check";
 import me from "../images/me2022.jpg";
 
+import signIn_Check from "../formCheck_Functions/signIn_Check";
+import signUp_Check from "../formCheck_Functions/signUp_Check";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosSignUp } from "../features/reduxSlice";
-import { axiosSignIn } from "../features/reduxSlice";
+import {
+  axiosSignUp,
+  axiosSignIn,
+  signInError_remove,
+  signUpError_remove,
+} from "../features/reduxSlice";
 
 const Credentials = () => {
-  //Redux Implementation
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // add the name of the reducer within features/index.js
   const signIn_loading = useSelector(
     (state) => state.redux_state.signIn_loading
@@ -20,16 +25,28 @@ const Credentials = () => {
     (state) => state.redux_state.signUp_loading
   );
 
+  //REDUX state
   const isAuthorized = useSelector((state) => state.redux_state.isAuthorized);
-  //redirect if token
   const redux_state = useSelector((state) => state.redux_state);
 
-  const navigate = useNavigate();
   useEffect(() => {
     if (isAuthorized) {
       navigate("/profile");
     }
   }, [redux_state]);
+
+  //SignIn ERROR remove
+  if (signIn_loading === "error") {
+    setTimeout(() => {
+      dispatch(signInError_remove());
+    }, 4000);
+  }
+  //SignUp ERROR remove
+  if (signUp_loading === "error") {
+    setTimeout(() => {
+      dispatch(signUpError_remove());
+    }, 4000);
+  }
 
   //Sign-In state
   const [signInEmail, setSignInEmail] = useState("");
@@ -192,7 +209,7 @@ const Credentials = () => {
         <div className={styles.wrapper}>
           {/* Sign In */}
           <div
-            class="p-3 bg-primary text-white"
+            className="p-3 bg-primary text-white"
             style={{
               margin: "5px",
               marginBottom: "-5px",
@@ -208,6 +225,13 @@ const Credentials = () => {
               />{" "}
             </div>
           </div>
+          {signIn_loading === "error" ? (
+            <div style={{ margin: "5px" }} className="p-3 bg-danger text-white">
+              Invalid Credentials
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.signUp}>
             <div className={styles.signUp_form}>
               <form onSubmit={signIn_Handler}>
@@ -245,7 +269,10 @@ const Credentials = () => {
                 </div>
                 <div style={{ marginTop: "15px" }}>
                   {signIn_loading === "loading" ? (
-                    <img src="https://img.icons8.com/external-prettycons-flat-prettycons/47/000000/external-loading-essentials-prettycons-flat-prettycons.png" />
+                    <img
+                      alt=""
+                      src="https://img.icons8.com/external-prettycons-flat-prettycons/47/000000/external-loading-essentials-prettycons-flat-prettycons.png"
+                    />
                   ) : (
                     <button className="m-1 btn btn-success" type="submit">
                       Sign In
@@ -273,6 +300,13 @@ const Credentials = () => {
               />{" "}
             </div>
           </div>
+          {signUp_loading === "error" ? (
+            <div style={{ margin: "5px" }} className="p-3 bg-danger text-white">
+              Invalid Credentials
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.signUp}>
             <div className={styles.signUp_form}>
               <form onSubmit={signUp_Handler}>
@@ -342,7 +376,10 @@ const Credentials = () => {
                 </div>
                 <div style={{ marginTop: "15px" }}>
                   {signUp_loading === "loading" ? (
-                    <img src="https://img.icons8.com/external-prettycons-flat-prettycons/47/000000/external-loading-essentials-prettycons-flat-prettycons.png" />
+                    <img
+                      alt=""
+                      src="https://img.icons8.com/external-prettycons-flat-prettycons/47/000000/external-loading-essentials-prettycons-flat-prettycons.png"
+                    />
                   ) : (
                     <button className="m-1 btn btn-success" type="submit">
                       Sign Up

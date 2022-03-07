@@ -74,7 +74,16 @@ const reduxSlice = createSlice({
     signUp_loading: "idle",
     signUp_error: "",
   },
-  reducers: {},
+  reducers: {
+    signInError_remove: (state) => {
+      state.signIn_loading = "idle";
+      state.signIn_error = "";
+    },
+    signUpError_remove: (state) => {
+      state.signUp_loading = "idle";
+      state.signUp_error = "";
+    },
+  },
   extraReducers: (builder) => {
     //SIGN UP **
     builder.addCase(axiosSignUp.pending, (state) => {
@@ -130,5 +139,7 @@ const reduxSlice = createSlice({
     builder.addCase(axiosReload.rejected, (state, action) => {});
   },
 });
+
+export const { signInError_remove, signUpError_remove } = reduxSlice.actions;
 
 export default reduxSlice.reducer;

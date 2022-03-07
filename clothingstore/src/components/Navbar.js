@@ -30,6 +30,25 @@ const CustomNavBar = () => {
               flexWrap: "wrap",
             }}
           >
+            {/* home */}
+            {isAuthorized ? (
+              <Link
+                to="/home"
+                style={{
+                  color: "black",
+                  margin: "15px",
+                  textDecoration: "none",
+                }}
+              >
+                <img
+                  alt=""
+                  src="https://img.icons8.com/dusk/64/000000/home.png"
+                />{" "}
+              </Link>
+            ) : (
+              ""
+            )}
+            <br />
             {/* user */}
             {isAuthorized ? (
               <Link
